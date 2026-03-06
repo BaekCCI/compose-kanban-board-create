@@ -1,40 +1,62 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+# 🚀 칸반 보드 태스크
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+# 기능 목록
 
-### Build and Run Android Application
+## 칸반 보드 태스크 카드 만들기(step1)
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+### 제목
 
-### Build and Run Desktop (JVM) Application
+- [x] 제목을 인자로 받아 Text 컴포넌트 생성
+- [x] 한줄이 넘어갈 경우 말 줄임표로 표기
+- [x] 제목이 null일 경우 "제목 없음"으로 표기
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+### 내용
+
+- [x] 내용을 인자로 받아 Text 컴포넌트 생성
+- [x] 두줄이 넘어갈 경우 말 줄임표로 표기
+
+### 칩
+
+- [x] 칩 내용을 인자로 받아 Text 컴포넌트 생성
+- [x] 한 칩안의 글자 수 제한(최대 5자)
+- [x] 칩의 개수 제한(최대 5개)
+
+### 유저 정보
+
+- [x] 유저 정보가 null일 경우 "알 수 없음"으로 표기
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 칸반 보드 태스크 카드 만들기(step2)
+
+### 도메인 모델 정의
+
+- [x] 도메인 모델(`Card`, `UserInfo`, `Tag`) 정의
+
+### 태그
+
+- [x] `Tag`를 value class로 분리
+- [x] 태그 글자 수 제한을 `Tag` 생성 시점에 검증 (최대 5자, 공백 불가)
+- [x] 태그 개수 제한을 `Card` 생성 시점에 검증 (최대 5개)
+
+### 유저 정보
+
+- [x] 탈퇴한 유저인 경우를 고려해 `Card.user`를 nullable로 설정
+- [x] `user`가 null인 경우 "알 수 없는 유저"로 표기
+
+### 카드
+
+- [x] 제목, 내용, 태그가 모두 NullOrBlank, emptyList일 경우 예외 처리
+
+### 단위 테스트
+
+- [x] 태그 글자 수가 5자 초과이면 예외
+- [x] 태그 개수가 5개 초과이면 예외
+- [x] 유저 이름이 공백이면 예외
+- [x] 카드에 유저를 제외한 필드가 모두 비어있으면(null, blank) 예외
+
+### UI 테스트
+
+- [x] 모든 필드가 있는 카드 - 제목 설명 태그 유저 모두 노출
+- [x] 제목 필드가 없는 카드 - "제목 없음" 표시
+- [x] 유저가 null인 카드 - "알 수 없는 유저" 노출
