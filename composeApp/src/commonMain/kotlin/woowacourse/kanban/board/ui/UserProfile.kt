@@ -22,9 +22,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.Gray500
-import woowacourse.kanban.board.Gray700
+import woowacourse.kanban.board.ui.theme.Gray700
 import woowacourse.kanban.board.model.User
+import woowacourse.kanban.board.ui.theme.Gray400
 
 private const val UNKNOWN_USER = "알 수 없는 유저"
 
@@ -39,12 +39,12 @@ fun UserProfile(user: User?, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .size(24.dp).clip(CircleShape)
                 .background(color = Color.White)
-                .border(width = 2.dp, color = Gray500, shape = CircleShape),
+                .border(width = 2.dp, color = Gray400, shape = CircleShape),
         ) {
             Icon(
                 imageVector = Icons.Default.AccountBox,
                 contentDescription = "profile image",
-                tint = Gray500,
+                tint = Gray400,
                 modifier = Modifier.clip(CircleShape).requiredSize(size = 33.dp),
             )
         }

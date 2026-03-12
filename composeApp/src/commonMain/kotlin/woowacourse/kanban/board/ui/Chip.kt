@@ -12,8 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.Gray100
-import woowacourse.kanban.board.Gray700
+import woowacourse.kanban.board.ui.theme.Gray100
+import woowacourse.kanban.board.ui.theme.Gray700
 
 @Composable
 fun Chip(content: String, modifier: Modifier = Modifier, textColor: Color = Gray700, backgroundColor: Color = Gray100) {

@@ -22,10 +22,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.Gray100
-import woowacourse.kanban.board.Gray200
-import woowacourse.kanban.board.Gray600
-import woowacourse.kanban.board.Gray900
+import woowacourse.kanban.board.ui.theme.Gray100
+import woowacourse.kanban.board.ui.theme.Gray200
+import woowacourse.kanban.board.ui.theme.Gray600
+import woowacourse.kanban.board.ui.theme.Gray900
 import woowacourse.kanban.board.model.Card
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.User
