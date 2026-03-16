@@ -3,7 +3,7 @@ package woowacourse.kanban.board.kanban
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
-import woowacourse.kanban.board.model.Card
+import woowacourse.kanban.board.model.Task
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.User
 
@@ -14,7 +14,7 @@ class CardTest {
         val given = listOf(Tag("컴포넌트"), Tag("성능"), Tag("컴포넌트"), Tag("성능"), Tag("컴포넌트"), Tag("성능"))
 
         assertFails {
-            Card(
+            Task(
                 title = "제목",
                 tags = given,
                 user = null,
@@ -25,7 +25,7 @@ class CardTest {
     @Test
     fun `카드에 유저를 제외한 필드가 모두 비어있으면 예외`() {
         assertFails {
-            Card(
+            Task(
                 title = "",
                 description = "",
                 tags = emptyList(),
@@ -37,25 +37,25 @@ class CardTest {
     @Test
     fun `카드에 타이틀만 있어도 생성 성공`() {
         val given = "타이틀"
-        assertEquals(given, Card(title = given, user = null).title)
+        assertEquals(given, Task(title = given, user = null).title)
     }
 
     @Test
     fun `카드에 내용만 있어도 생성 성공`() {
         val given = "내용"
-        assertEquals(given, Card(title = null, description = given, user = null).description)
+        assertEquals(given, Task(title = null, description = given, user = null).description)
     }
 
     @Test
     fun `카드에 태그만 있어도 생성 성공`() {
         val given = listOf(Tag("컴포넌트"), Tag("성능"))
-        assertEquals(given, Card(title = null, tags = given, user = null).tags)
+        assertEquals(given, Task(title = null, tags = given, user = null).tags)
     }
 
     @Test
     fun `카드에 태그가 5개 이하면 생성 성공`() {
         val given = listOf(Tag("컴포넌트"), Tag("성능"), Tag("컴포넌트"), Tag("성능"), Tag("컴포넌트"))
-        Card(title = null, tags = given, user = null)
+        Task(title = null, tags = given, user = null)
     }
 
     @Test
@@ -65,7 +65,7 @@ class CardTest {
         val givenTags = listOf(Tag("컴포넌트"), Tag("성능"))
         val givenUser = User("다이노")
 
-        val card = Card(
+        val card = Task(
             title = givenTitle,
             description = givenContent,
             tags = givenTags,

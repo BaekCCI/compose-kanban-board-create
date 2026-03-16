@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.model.Card
+import woowacourse.kanban.board.model.Task
 import woowacourse.kanban.board.model.Status
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.Tags
@@ -39,7 +39,7 @@ private const val TITLE_MAX_LINE = 1
 private const val CONTENT_MAX_LINE = 2
 
 @Composable
-fun KanbanCard(card: Card, modifier: Modifier = Modifier) {
+fun TaskCard(task: Task, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .clip(shape = RoundedCornerShape(10.dp))
@@ -49,18 +49,18 @@ fun KanbanCard(card: Card, modifier: Modifier = Modifier) {
             .width(286.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        CardTitle(card.title)
-        card.description?.let { content -> Description(content) }
-        if (card.tags.items.isNotEmpty()) Tags(card.tags)
+        TaskTitle(task.title)
+        task.description?.let { content -> TaskDescription(content) }
+        if (task.tags.items.isNotEmpty()) TaskTags(task.tags)
         Box {
             HorizontalDivider(color = Gray100, thickness = 1.dp)
-            UserProfile(card.user, Modifier.padding(10.dp))
+            UserProfile(task.user, Modifier.padding(10.dp))
         }
     }
 }
 
 @Composable
-private fun CardTitle(title: String?) {
+private fun TaskTitle(title: String?) {
     Text(
         text = if (title.isNullOrBlank()) DEFAULT_TITLE else title,
         fontSize = 16.sp,
@@ -72,7 +72,7 @@ private fun CardTitle(title: String?) {
 }
 
 @Composable
-private fun Description(description: String) {
+private fun TaskDescription(description: String) {
     Text(
         text = description,
         fontSize = 14.sp,
@@ -84,7 +84,7 @@ private fun Description(description: String) {
 }
 
 @Composable
-private fun Tags(tags: Tags) {
+private fun TaskTags(tags: Tags) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -95,35 +95,35 @@ private fun Tags(tags: Tags) {
     }
 }
 
-class CardPreviewParameterProvider : PreviewParameterProvider<Card> {
+class CardPreviewParameterProvider : PreviewParameterProvider<Task> {
     override val values = sequenceOf(
-        Card(
+        Task(
             title = "LazyColumn 컴포넌트 구현",
             description = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
             tags = Tags(listOf(Tag("컴포넌트"), Tag("성능"))),
             user = User(name = "다이노"),
             status = Status.TODO,
         ),
-        Card(
+        Task(
             title = "LazyColumn 컴포넌트 구현",
             tags = Tags(listOf(Tag("컴포넌트"), Tag("성능"))),
             user = User(name = "다이노"),
             status = Status.TODO,
         ),
-        Card(
+        Task(
             title = "LazyColumn 컴포넌트 구현",
             description = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
             user = User(name = "다이노"),
             tags = Tags(emptyList()),
             status = Status.TODO,
         ),
-        Card(
+        Task(
             title = "LazyColumn 컴포넌트 구현",
             user = User(name = "다이노"),
             tags = Tags(emptyList()),
             status = Status.TODO,
         ),
-        Card(
+        Task(
             title = "LazyColumn 컴포넌트 구현",
             description = "너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노출하고 말줄임표로 처리합니다",
             tags = Tags(listOf(Tag("너무너무"), Tag("긴 태그"), Tag("최대로"), Tag("5자까지"), Tag("5개제한임"))),
@@ -135,6 +135,6 @@ class CardPreviewParameterProvider : PreviewParameterProvider<Card> {
 
 @Composable
 @Preview
-fun KanbanCardPreview(@PreviewParameter(CardPreviewParameterProvider::class) card: Card) {
-    KanbanCard(card)
+fun TaskCardPreview(@PreviewParameter(CardPreviewParameterProvider::class) card: Task) {
+    TaskCard(card)
 }

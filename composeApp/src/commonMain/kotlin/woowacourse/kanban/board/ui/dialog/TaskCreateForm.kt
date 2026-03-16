@@ -24,7 +24,7 @@ import woowacourse.kanban.board.ui.dialog.section.TagSection
 import woowacourse.kanban.board.ui.dialog.section.TitleSection
 
 @Composable
-fun KanbanCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
+fun TaskCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
     val managers = listOf(
         User("디노"),
         User("제임스"),
@@ -126,8 +126,8 @@ fun validateTag(tag: String): String? {
 
 @Composable
 @Preview(showBackground = true)
-fun KanbanCreateFormPreview() {
-    KanbanCreateForm(
+fun TaskCreateFormPreview() {
+    TaskCreateForm(
         onDismiss = {},
     )
 }

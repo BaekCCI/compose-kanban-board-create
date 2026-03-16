@@ -9,7 +9,7 @@ import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
 import org.junit.Test
-import woowacourse.kanban.board.ui.dialog.KanbanCreateForm
+import woowacourse.kanban.board.ui.dialog.TaskCreateForm
 
 @OptIn(ExperimentalTestApi::class)
 class KanbanCreateTest {
@@ -17,7 +17,7 @@ class KanbanCreateTest {
     @Test
     fun `제목과 태그에 오류가 없고 제목이 공백이 아닐 경우 활성화된다`() = runComposeUiTest {
         setContent {
-            KanbanCreateForm(
+            TaskCreateForm(
                 onDismiss = {},
             )
         }
@@ -34,7 +34,7 @@ class KanbanCreateTest {
     @Test
     fun `제목 에러 발생시 비활성화된다`() = runComposeUiTest {
         setContent {
-            KanbanCreateForm(
+            TaskCreateForm(
                 onDismiss = {},
             )
         }
@@ -52,7 +52,7 @@ class KanbanCreateTest {
     @Test
     fun `태그 에러 발생시 비활성화된다`() = runComposeUiTest {
         setContent {
-            KanbanCreateForm(
+            TaskCreateForm(
                 onDismiss = {},
             )
         }
