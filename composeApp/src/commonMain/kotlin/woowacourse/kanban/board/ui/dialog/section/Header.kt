@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui.create
+package woowacourse.kanban.board.ui.dialog.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -15,10 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Header(
-    modifier: Modifier = Modifier,
-    onDismiss: () -> Unit,
-) {
+fun Header(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
     Row(
         modifier = modifier
             .fillMaxWidth()

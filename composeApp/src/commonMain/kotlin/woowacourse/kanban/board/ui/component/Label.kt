@@ -10,10 +10,7 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.ui.theme.Gray700
 
 @Composable
-fun Label(
-    label: String,
-    required: Boolean = false,
-) {
+fun Label(label: String, required: Boolean = false) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,

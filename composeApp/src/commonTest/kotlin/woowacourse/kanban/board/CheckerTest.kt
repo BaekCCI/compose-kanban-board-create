@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
-import woowacourse.kanban.board.study.CheckerView
 import kotlin.test.Test
+import woowacourse.kanban.board.study.CheckerView
 
 @OptIn(ExperimentalTestApi::class)
 class CheckerTest {

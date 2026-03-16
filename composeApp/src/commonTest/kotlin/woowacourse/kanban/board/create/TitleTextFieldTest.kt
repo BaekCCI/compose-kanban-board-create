@@ -10,9 +10,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
-import woowacourse.kanban.board.ui.create.maincontent.TitleArea
 import kotlin.test.Test
-
+import woowacourse.kanban.board.ui.dialog.section.TitleSection
 
 @OptIn(ExperimentalTestApi::class)
 class TitleTextFieldTest {
@@ -23,7 +22,7 @@ class TitleTextFieldTest {
             var title by remember { mutableStateOf("") }
             var isTitleError by remember { mutableStateOf(false) }
 
-            TitleArea(
+            TitleSection(
                 value = title,
                 onTitleChange = {
                     title = it

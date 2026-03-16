@@ -1,9 +1,7 @@
-package woowacourse.kanban.board.ui.create
+package woowacourse.kanban.board.ui.dialog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
@@ -17,17 +15,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Status
 import woowacourse.kanban.board.model.User
-import woowacourse.kanban.board.ui.create.maincontent.ContentArea
-import woowacourse.kanban.board.ui.create.maincontent.ManagerSelector
-import woowacourse.kanban.board.ui.create.maincontent.StatusSelector
-import woowacourse.kanban.board.ui.create.maincontent.TagArea
-import woowacourse.kanban.board.ui.create.maincontent.TitleArea
+import woowacourse.kanban.board.ui.dialog.section.AssigneeSection
+import woowacourse.kanban.board.ui.dialog.section.DescriptionSection
+import woowacourse.kanban.board.ui.dialog.section.Footer
+import woowacourse.kanban.board.ui.dialog.section.Header
+import woowacourse.kanban.board.ui.dialog.section.StatusSection
+import woowacourse.kanban.board.ui.dialog.section.TagSection
+import woowacourse.kanban.board.ui.dialog.section.TitleSection
 
 @Composable
-fun KanbanCreateDialogContent(
-    modifier: Modifier = Modifier,
-    onDismiss: () -> Unit,
-) {
+fun KanbanCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
     val managers = listOf(
         User("디노"),
         User("제임스"),
@@ -46,10 +43,10 @@ fun KanbanCreateDialogContent(
     var selectedUser by remember { mutableStateOf(managers.first()) }
 
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Header(
-            onDismiss = onDismiss
+            onDismiss = onDismiss,
         )
         HorizontalDivider()
         LazyColumn(
@@ -58,7 +55,7 @@ fun KanbanCreateDialogContent(
             verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             item {
-                TitleArea(
+                TitleSection(
                     value = title,
                     onTitleChange = {
                         title = it
@@ -69,7 +66,7 @@ fun KanbanCreateDialogContent(
             }
 
             item {
-                ContentArea(
+                DescriptionSection(
                     value = content,
                     onContentChange = {
                         content = it
@@ -78,7 +75,7 @@ fun KanbanCreateDialogContent(
             }
 
             item {
-                TagArea(
+                TagSection(
                     value = tag,
                     onTagChange = {
                         tag = it
@@ -91,7 +88,7 @@ fun KanbanCreateDialogContent(
             }
 
             item {
-                StatusSelector(
+                StatusSection(
                     selectedStatus = status,
                     onStatusChange = {
                         status = it
@@ -100,7 +97,7 @@ fun KanbanCreateDialogContent(
             }
 
             item {
-                ManagerSelector(
+                AssigneeSection(
                     managers = managers,
                     selectedUser = selectedUser,
                     onUserChange = {
@@ -115,7 +112,7 @@ fun KanbanCreateDialogContent(
             onClickConfirm = {
                 // 나중 기능 추가
             },
-            enabled = !isTitleError && title.isNotBlank() &&!isTagError,
+            enabled = !isTitleError && title.isNotBlank() && !isTagError,
         )
     }
 }
@@ -127,11 +124,10 @@ fun validateTag(tag: String): String? {
     return null
 }
 
-
 @Composable
 @Preview(showBackground = true)
-fun KanbanCreateDialogContentPreview() {
-    KanbanCreateDialogContent(
+fun KanbanCreateFormPreview() {
+    KanbanCreateForm(
         onDismiss = {},
     )
 }

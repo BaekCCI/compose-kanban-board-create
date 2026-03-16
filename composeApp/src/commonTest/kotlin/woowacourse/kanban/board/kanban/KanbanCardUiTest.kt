@@ -20,7 +20,7 @@ class KanbanCardUiTest {
         val user = User(name = "다이노")
 
         setContent {
-            KanbanCard(Card(title = title, content = content, tags = tags, user = user))
+            KanbanCard(Card(title = title, description = content, tags = tags, user = user))
         }
 
         onNodeWithText(title).assertIsDisplayed()
@@ -38,7 +38,7 @@ class KanbanCardUiTest {
         val user = User(name = "다이노")
 
         setContent {
-            KanbanCard(Card(title = title, content = content, tags = tags, user = user))
+            KanbanCard(Card(title = title, description = content, tags = tags, user = user))
         }
 
         onNodeWithText(DEFAULT_TITLE).assertIsDisplayed()
@@ -52,7 +52,7 @@ class KanbanCardUiTest {
         val user = null
 
         setContent {
-            KanbanCard(Card(title = title, content = content, tags = tags, user = user))
+            KanbanCard(Card(title = title, description = content, tags = tags, user = user))
         }
 
         onNodeWithText(UNKNOWN_USER).assertIsDisplayed()

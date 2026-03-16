@@ -6,7 +6,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.User
-import woowacourse.kanban.board.ui.UserProfile
+import woowacourse.kanban.board.ui.component.UserProfile
 
 @OptIn(ExperimentalTestApi::class)
 class UserProfileUiTest {

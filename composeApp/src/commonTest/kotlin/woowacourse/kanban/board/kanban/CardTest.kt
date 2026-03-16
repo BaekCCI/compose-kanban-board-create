@@ -27,7 +27,7 @@ class CardTest {
         assertFails {
             Card(
                 title = "",
-                content = "",
+                description = "",
                 tags = emptyList(),
                 user = null,
             )
@@ -43,7 +43,7 @@ class CardTest {
     @Test
     fun `카드에 내용만 있어도 생성 성공`() {
         val given = "내용"
-        assertEquals(given, Card(title = null, content = given, user = null).content)
+        assertEquals(given, Card(title = null, description = given, user = null).description)
     }
 
     @Test
@@ -67,12 +67,12 @@ class CardTest {
 
         val card = Card(
             title = givenTitle,
-            content = givenContent,
+            description = givenContent,
             tags = givenTags,
             user = givenUser,
         )
         assertEquals(givenTitle, card.title)
-        assertEquals(givenContent, card.content)
+        assertEquals(givenContent, card.description)
         assertEquals(givenTags.toSet(), card.tags.toSet())
         assertEquals(givenUser, card.user)
     }

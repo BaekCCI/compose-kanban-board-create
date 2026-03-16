@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import woowacourse.kanban.board.ui.create.KanbanCreateDialogContent
+import woowacourse.kanban.board.ui.dialog.KanbanCreateForm
 
 @Composable
 @Preview
@@ -17,14 +17,14 @@ fun App() {
     var showDialog by remember { mutableStateOf(false) }
 
     MaterialTheme {
-        if(showDialog){
-            KanbanCreateDialogContent(
-                onDismiss = { showDialog = false }
+        if (showDialog) {
+            KanbanCreateForm(
+                onDismiss = { showDialog = false },
             )
-        }else{
+        } else {
             Button(
                 onClick = { showDialog = true },
-                content = { Text("Show dialog") }
+                content = { Text("Show dialog") },
             )
         }
     }

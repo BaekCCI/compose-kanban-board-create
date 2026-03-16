@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui.create.maincontent
+package woowacourse.kanban.board.ui.dialog.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,13 +21,8 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Status
 import woowacourse.kanban.board.ui.component.Label
 
-
 @Composable
-fun StatusSelector(
-    modifier: Modifier = Modifier,
-    selectedStatus: Status = Status.TODO,
-    onStatusChange: (Status) -> Unit,
-) {
+fun StatusSection(modifier: Modifier = Modifier, selectedStatus: Status = Status.TODO, onStatusChange: (Status) -> Unit) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -50,12 +45,7 @@ fun StatusSelector(
 }
 
 @Composable
-fun StatusChip(
-    modifier: Modifier = Modifier,
-    status: Status,
-    selectedStatus: Status,
-    onStatusChange: (Status) -> Unit,
-) {
+fun StatusChip(modifier: Modifier = Modifier, status: Status, selectedStatus: Status, onStatusChange: (Status) -> Unit) {
     FilterChip(
         selected = selectedStatus == status,
         onClick = {
@@ -89,7 +79,7 @@ fun StatusChip(
 @Composable
 @Preview(showBackground = true)
 private fun StatusPreview() {
-    StatusSelector(
+    StatusSection(
         selectedStatus = Status.TODO,
         onStatusChange = { print(it) },
     )
@@ -107,4 +97,3 @@ private fun StatusChipPreview() {
         },
     )
 }
-

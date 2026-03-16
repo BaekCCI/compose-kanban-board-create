@@ -1,13 +1,9 @@
-package woowacourse.kanban.board.ui.create.maincontent
+package woowacourse.kanban.board.ui.dialog.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -15,37 +11,37 @@ import woowacourse.kanban.board.ui.component.Label
 import woowacourse.kanban.board.ui.component.SingleLineTextField
 
 @Composable
-fun TitleArea(
+fun TagSection(
     modifier: Modifier = Modifier,
     value: String,
-    onTitleChange: (String) -> Unit,
+    onTagChange: (String) -> Unit,
+    errorMessage: String? = null,
     isError: Boolean = false,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Label(
-            "제목",
-            true,
-        )
+        Label("태그")
         SingleLineTextField(
             modifier = Modifier.fillMaxWidth(),
             value = value,
-            onValueChange = onTitleChange,
+            onValueChange = { onTagChange(it) },
             isError = isError,
-            errorMessage = "제목을 입력해주세요.",
-            placeHolderMessage = "태스크 제목을 입력하세요.",
+            errorMessage = errorMessage,
+            placeHolderMessage = "태그를 쉼표로 구분하여 입력하세요 (예: 버그,긴급)",
+            supportingText = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.",
         )
     }
 }
 
 @Composable
 @Preview(showBackground = true)
-private fun TitlePreview() {
-    var title by remember { mutableStateOf("") }
-    TitleArea(
-        value = title,
-        onTitleChange = { title = it },
+private fun TagPreview() {
+    TagSection(
+        value = "",
+        onTagChange = {},
+        isError = false,
+        errorMessage = null,
     )
 }

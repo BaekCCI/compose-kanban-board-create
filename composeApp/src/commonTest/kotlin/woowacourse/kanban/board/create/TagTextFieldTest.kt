@@ -10,8 +10,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
 import org.junit.Test
-import woowacourse.kanban.board.ui.create.maincontent.TagArea
-import woowacourse.kanban.board.ui.create.validateTag
+import woowacourse.kanban.board.ui.dialog.section.TagSection
+import woowacourse.kanban.board.ui.dialog.validateTag
 
 @OptIn(ExperimentalTestApi::class)
 class TagTextFieldTest {
@@ -24,7 +24,7 @@ class TagTextFieldTest {
 
             var isTagErrorMessage: String? by remember { mutableStateOf(null) }
 
-            TagArea(
+            TagSection(
                 value = tagText,
                 onTagChange = {
                     tagText = it
@@ -50,7 +50,7 @@ class TagTextFieldTest {
 
             var isTagErrorMessage: String? by remember { mutableStateOf(null) }
 
-            TagArea(
+            TagSection(
                 value = tagText,
                 onTagChange = {
                     tagText = it
@@ -68,7 +68,6 @@ class TagTextFieldTest {
             .assertExists()
     }
 
-
     @Test
     fun `쉼표로 구분된 개수가 5개 초과일 경우 에러 문구가 표시된다`() = runComposeUiTest {
         setContent {
@@ -77,7 +76,7 @@ class TagTextFieldTest {
 
             var isTagErrorMessage: String? by remember { mutableStateOf(null) }
 
-            TagArea(
+            TagSection(
                 value = tagText,
                 onTagChange = {
                     tagText = it
@@ -94,5 +93,4 @@ class TagTextFieldTest {
         onNodeWithText("태그는 5자 이내로 5개까지만 등록할 수 있습니다", useUnmergedTree = true)
             .assertExists()
     }
-
 }

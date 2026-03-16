@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui
+package woowacourse.kanban.board.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding

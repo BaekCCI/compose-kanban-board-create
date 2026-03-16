@@ -15,4 +15,3 @@ val Gray900 = Color(0xff101828)
 
 val Blue = Color(0xff4F39F6)
 val Red = Color(0xffB3261E)
-

@@ -1,16 +1,11 @@
-package woowacourse.kanban.board.ui.create.maincontent
+package woowacourse.kanban.board.ui.dialog.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.runtime.Composable
@@ -23,35 +18,30 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.User
-import woowacourse.kanban.board.ui.UserProfile
 import woowacourse.kanban.board.ui.component.Label
+import woowacourse.kanban.board.ui.component.UserProfile
 
 @Composable
-fun ManagerSelector(
-    modifier: Modifier = Modifier,
-    managers: List<User>,
-    selectedUser: User,
-    onUserChange: (User) -> Unit,
-) {
+fun AssigneeSection(modifier: Modifier = Modifier, managers: List<User>, selectedUser: User, onUserChange: (User) -> Unit) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Label("담당자", true)
-        managers.chunked(3).forEach { users->
+        managers.chunked(3).forEach { users ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 users.forEach { manager ->
-                    ManagerChip(
-                        managers = manager,
-                        selectedUser = manager == selectedUser,
+                    AssigneeChip(
+                        assignee = manager,
+                        selected = manager == selectedUser,
                         onUserChange = { onUserChange(manager) },
                         modifier = Modifier.weight(1f),
                     )
                 }
-                repeat(3-users.size){
-                    Spacer(modifier= Modifier.weight(1f))
+                repeat(3 - users.size) {
+                    Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }
@@ -59,17 +49,12 @@ fun ManagerSelector(
 }
 
 @Composable
-fun ManagerChip(
-    managers: User,
-    selectedUser: Boolean,
-    onUserChange: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
+fun AssigneeChip(assignee: User, selected: Boolean, onUserChange: () -> Unit, modifier: Modifier = Modifier) {
     FilterChip(
-        selected = selectedUser,
+        selected = selected,
         onClick = onUserChange,
         label = {
-            UserProfile(user = managers, Modifier.padding(vertical = 16.dp))
+            UserProfile(user = assignee, Modifier.padding(vertical = 16.dp))
         },
         colors = FilterChipDefaults.filterChipColors(
             containerColor = Color.White,
@@ -79,7 +64,7 @@ fun ManagerChip(
         modifier = modifier,
         border = FilterChipDefaults.filterChipBorder(
             enabled = true,
-            selected = selectedUser,
+            selected = selected,
             borderColor = Color.Gray,
             selectedBorderColor = Color.Blue,
             borderWidth = 1.dp,
@@ -90,7 +75,7 @@ fun ManagerChip(
 
 @Composable
 @Preview(showBackground = true)
-private fun ManagerPreview() {
+private fun AssigneePreview() {
     var selectedUser by remember { mutableStateOf(User("디노")) }
 
     val managers = listOf(
@@ -98,10 +83,10 @@ private fun ManagerPreview() {
         User("제임스"),
         User("로미"),
         User("로미"),
-        User("로미")
+        User("로미"),
     )
 
-    ManagerSelector(
+    AssigneeSection(
         managers = managers,
         selectedUser = selectedUser,
         onUserChange = { },
@@ -110,10 +95,10 @@ private fun ManagerPreview() {
 
 @Composable
 @Preview(showBackground = true)
-private fun ManagerChipPreview() {
-    ManagerChip(
-        managers = User("김철수"),
-        selectedUser = true,
+private fun AssigneeChipPreview() {
+    AssigneeChip(
+        assignee = User("김철수"),
+        selected = true,
         onUserChange = {},
     )
 }

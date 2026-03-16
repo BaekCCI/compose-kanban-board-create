@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui.create
+package woowacourse.kanban.board.ui.dialog.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,12 +20,7 @@ import woowacourse.kanban.board.ui.theme.Gray300
 import woowacourse.kanban.board.ui.theme.Gray700
 
 @Composable
-fun Footer(
-    modifier: Modifier = Modifier,
-    onClickCancel: () -> Unit,
-    onClickConfirm: () -> Unit,
-    enabled: Boolean = true,
-) {
+fun Footer(modifier: Modifier = Modifier, onClickCancel: () -> Unit, onClickConfirm: () -> Unit, enabled: Boolean = true) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -35,40 +30,32 @@ fun Footer(
         CancelButton(onClickCancel = onClickCancel)
         ConfirmButton(
             onClickConfirm = onClickConfirm,
-            enabled = enabled
+            enabled = enabled,
         )
     }
 }
 
 @Composable
-fun CancelButton(
-    modifier: Modifier = Modifier,
-    onClickCancel: () -> Unit,
-    enabled: Boolean = true,
-) {
+fun CancelButton(modifier: Modifier = Modifier, onClickCancel: () -> Unit, enabled: Boolean = true) {
     Button(
         onClick = {
             onClickCancel()
         },
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Transparent
+            containerColor = Color.Transparent,
         ),
-        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp)
+        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp),
     ) {
         Text(
             text = "취소",
-            color = Gray700
+            color = Gray700,
         )
     }
 }
 
 @Composable
-fun ConfirmButton(
-    modifier: Modifier = Modifier,
-    onClickConfirm: () -> Unit,
-    enabled: Boolean = true,
-) {
+fun ConfirmButton(modifier: Modifier = Modifier, onClickConfirm: () -> Unit, enabled: Boolean = true) {
     Button(
         onClick = {
             onClickConfirm()
@@ -79,9 +66,9 @@ fun ConfirmButton(
             containerColor = Blue,
             contentColor = Color.White,
             disabledContainerColor = Gray300,
-            disabledContentColor = Color.White
+            disabledContentColor = Color.White,
         ),
-        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp)
+        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp),
     ) {
         Text(
             text = "생성",

@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui.create.maincontent
+package woowacourse.kanban.board.ui.dialog.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,11 +17,7 @@ import woowacourse.kanban.board.ui.theme.Gray500
 import woowacourse.kanban.board.ui.theme.Red
 
 @Composable
-fun ContentArea(
-    modifier: Modifier = Modifier,
-    value: String,
-    onContentChange: (String) -> Unit,
-) {
+fun DescriptionSection(modifier: Modifier = Modifier, value: String, onContentChange: (String) -> Unit) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -29,7 +25,7 @@ fun ContentArea(
         Label("설명")
         OutlinedTextField(
             value = value,
-            onValueChange =  {
+            onValueChange = {
                 onContentChange(it)
             },
             modifier = modifier.fillMaxWidth(),
@@ -51,9 +47,9 @@ fun ContentArea(
 
 @Composable
 @Preview(showBackground = true)
-private fun ContentPreview() {
-    ContentArea(
+private fun DescriptionPreview() {
+    DescriptionSection(
         value = "",
-        onContentChange = {}
+        onContentChange = {},
     )
 }
