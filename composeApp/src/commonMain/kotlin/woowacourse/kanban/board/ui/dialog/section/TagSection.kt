@@ -7,16 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.domain.validator.ValidationResult
 import woowacourse.kanban.board.ui.component.Label
 import woowacourse.kanban.board.ui.component.SingleLineTextField
+import woowacourse.kanban.board.ui.util.toMessage
 
 @Composable
 fun TagSection(
     modifier: Modifier = Modifier,
     value: String,
     onTagChange: (String) -> Unit,
-    errorMessage: String? = null,
-    isError: Boolean = false,
+    validation: ValidationResult = ValidationResult.Initial,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -27,8 +28,8 @@ fun TagSection(
             modifier = Modifier.fillMaxWidth(),
             value = value,
             onValueChange = { onTagChange(it) },
-            isError = isError,
-            errorMessage = errorMessage,
+            isError = validation is ValidationResult.Invalid,
+            errorMessage = (validation as? ValidationResult.Invalid)?.error?.toMessage(),
             placeHolderMessage = "태그를 쉼표로 구분하여 입력하세요 (예: 버그,긴급)",
             supportingText = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.",
         )
@@ -41,7 +42,5 @@ private fun TagPreview() {
     TagSection(
         value = "",
         onTagChange = {},
-        isError = false,
-        errorMessage = null,
     )
 }

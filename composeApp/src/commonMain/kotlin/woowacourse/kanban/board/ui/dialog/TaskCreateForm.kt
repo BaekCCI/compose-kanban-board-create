@@ -7,14 +7,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.domain.model.Status
 import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.dialog.section.AssigneeSection
 import woowacourse.kanban.board.ui.dialog.section.DescriptionSection
@@ -22,26 +18,12 @@ import woowacourse.kanban.board.ui.dialog.section.Footer
 import woowacourse.kanban.board.ui.dialog.section.Header
 import woowacourse.kanban.board.ui.dialog.section.StatusSection
 import woowacourse.kanban.board.ui.dialog.section.TagSection
+import woowacourse.kanban.board.ui.dialog.section.TaskCreateFormState
 import woowacourse.kanban.board.ui.dialog.section.TitleSection
 
 @Composable
-fun TaskCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
-    val managers = listOf(
-        User("디노"),
-        User("제임스"),
-    )
-
-    var title by remember { mutableStateOf("") }
-    var isTitleError by remember { mutableStateOf(false) }
-
-    var content by remember { mutableStateOf("") }
-
-    var tag by remember { mutableStateOf("") }
-    var isTagError by remember { mutableStateOf(false) }
-    var isTagErrorMessage: String? by remember { mutableStateOf(null) }
-
-    var status by remember { mutableStateOf(Status.TODO) }
-    var selectedUser by remember { mutableStateOf(managers.first()) }
+fun TaskCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit, assignees: List<User>) {
+    val uiState = remember { TaskCreateFormState(assignees) }
 
     Column(
         modifier = modifier,
@@ -59,44 +41,40 @@ fun TaskCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
 
         ) {
             TitleSection(
-                value = title,
+                value = uiState.title,
                 onTitleChange = {
-                    title = it
-                    isTitleError = title.isBlank()
+                    uiState.updateTitle(it)
                 },
-                isError = isTitleError,
+                validation = uiState.titleValidation,
             )
 
             DescriptionSection(
-                value = content,
+                value = uiState.content,
                 onContentChange = {
-                    content = it
+                    uiState.updateContent(it)
                 },
             )
 
             TagSection(
-                value = tag,
+                value = uiState.tag,
                 onTagChange = {
-                    tag = it
-                    isTagErrorMessage = validateTag(it)
-                    isTagError = isTagErrorMessage != null
+                    uiState.updateTag(it)
                 },
-                errorMessage = isTagErrorMessage,
-                isError = isTagError,
+                validation = uiState.tagValidation,
             )
 
             StatusSection(
-                selectedStatus = status,
+                selectedStatus = uiState.selectedStatus,
                 onStatusChange = {
-                    status = it
+                    uiState.updateStatus(it)
                 },
             )
 
             AssigneeSection(
-                managers = managers,
-                selectedUser = selectedUser,
+                managers = uiState.assignees,
+                selectedUser = uiState.selectedAssignee,
                 onUserChange = {
-                    selectedUser = it
+                    uiState.updateAssignee(it)
                 },
             )
         }
@@ -104,13 +82,14 @@ fun TaskCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
         Footer(
             onClickCancel = onDismiss,
             onClickConfirm = {
-                // 나중 기능 추가
+                // TODO: 생성 기능 추가
             },
-            enabled = !isTitleError && title.isNotBlank() && !isTagError,
+            enabled = uiState.canCreate,
         )
     }
 }
 
+// TODO: 삭제
 fun validateTag(tag: String): String? {
     val formatted = tag.split(",").map { it.trim() }
     if (formatted.any { it.isBlank() }) return "태그 형식이 올바르지 않습니다."
@@ -123,5 +102,6 @@ fun validateTag(tag: String): String? {
 fun TaskCreateFormPreview() {
     TaskCreateForm(
         onDismiss = {},
+        assignees = listOf(User("다이노"), User("다이노소어"), User("우우우")),
     )
 }

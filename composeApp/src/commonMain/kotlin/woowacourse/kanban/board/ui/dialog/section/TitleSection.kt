@@ -11,11 +11,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.domain.validator.ValidationResult
 import woowacourse.kanban.board.ui.component.Label
 import woowacourse.kanban.board.ui.component.SingleLineTextField
+import woowacourse.kanban.board.ui.util.toMessage
 
 @Composable
-fun TitleSection(modifier: Modifier = Modifier, value: String, onTitleChange: (String) -> Unit, isError: Boolean = false) {
+fun TitleSection(
+    modifier: Modifier = Modifier,
+    value: String,
+    onTitleChange: (String) -> Unit,
+    validation: ValidationResult = ValidationResult.Initial,
+) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -28,8 +35,8 @@ fun TitleSection(modifier: Modifier = Modifier, value: String, onTitleChange: (S
             modifier = Modifier.fillMaxWidth(),
             value = value,
             onValueChange = onTitleChange,
-            isError = isError,
-            errorMessage = "제목을 입력해주세요.",
+            isError = validation is ValidationResult.Invalid,
+            errorMessage = (validation as? ValidationResult.Invalid)?.error?.toMessage(),
             placeHolderMessage = "태스크 제목을 입력하세요.",
         )
     }

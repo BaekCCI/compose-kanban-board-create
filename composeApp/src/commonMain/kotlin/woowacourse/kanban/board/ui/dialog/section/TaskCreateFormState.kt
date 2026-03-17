@@ -18,13 +18,17 @@ class TaskCreateFormState(val assignees: List<User>) {
     var tagValidation: ValidationResult by mutableStateOf(ValidationResult.Initial)
 
     var selectedStatus by mutableStateOf(Status.TODO)
-    var selectedAssignee by mutableStateOf(assignees.firstOrNull())
+    var selectedAssignee by mutableStateOf(assignees.first())
 
     val canCreate get() = titleValidation is ValidationResult.Valid && tagValidation !is ValidationResult.Invalid
 
     fun updateTitle(input: String) {
         title = input
         titleValidation = TaskValidator.validateTitle(input)
+    }
+
+    fun updateContent(input: String) {
+        content = input
     }
 
     fun updateTag(input: String) {

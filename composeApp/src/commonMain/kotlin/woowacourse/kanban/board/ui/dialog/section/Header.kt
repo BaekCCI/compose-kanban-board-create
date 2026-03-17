@@ -29,8 +29,8 @@ fun Header(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
     ) {
         Text(
             text = "새 태스크 생성",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.W600,
+            fontSize = 28.sp,
+            fontWeight = FontWeight.SemiBold,
             color = Gray900,
         )
         IconButton(
