@@ -3,7 +3,8 @@ package woowacourse.kanban.board.ui.dialog
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,8 +14,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.model.Status
-import woowacourse.kanban.board.model.User
+import woowacourse.kanban.board.domain.model.Status
+import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.dialog.section.AssigneeSection
 import woowacourse.kanban.board.ui.dialog.section.DescriptionSection
 import woowacourse.kanban.board.ui.dialog.section.Footer
@@ -49,62 +50,55 @@ fun TaskCreateForm(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
             onDismiss = onDismiss,
         )
         HorizontalDivider()
-        LazyColumn(
-            modifier = Modifier.padding(24.dp)
-                .weight(1f),
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+                .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp),
+
         ) {
-            item {
-                TitleSection(
-                    value = title,
-                    onTitleChange = {
-                        title = it
-                        isTitleError = title.isBlank()
-                    },
-                    isError = isTitleError,
-                )
-            }
+            TitleSection(
+                value = title,
+                onTitleChange = {
+                    title = it
+                    isTitleError = title.isBlank()
+                },
+                isError = isTitleError,
+            )
 
-            item {
-                DescriptionSection(
-                    value = content,
-                    onContentChange = {
-                        content = it
-                    },
-                )
-            }
+            DescriptionSection(
+                value = content,
+                onContentChange = {
+                    content = it
+                },
+            )
 
-            item {
-                TagSection(
-                    value = tag,
-                    onTagChange = {
-                        tag = it
-                        isTagErrorMessage = validateTag(it)
-                        isTagError = isTagErrorMessage != null
-                    },
-                    errorMessage = isTagErrorMessage,
-                    isError = isTagError,
-                )
-            }
+            TagSection(
+                value = tag,
+                onTagChange = {
+                    tag = it
+                    isTagErrorMessage = validateTag(it)
+                    isTagError = isTagErrorMessage != null
+                },
+                errorMessage = isTagErrorMessage,
+                isError = isTagError,
+            )
 
-            item {
-                StatusSection(
-                    selectedStatus = status,
-                    onStatusChange = {
-                        status = it
-                    },
-                )
-            }
+            StatusSection(
+                selectedStatus = status,
+                onStatusChange = {
+                    status = it
+                },
+            )
 
-            item {
-                AssigneeSection(
-                    managers = managers,
-                    selectedUser = selectedUser,
-                    onUserChange = {
-                        selectedUser = it
-                    },
-                )
-            }
+            AssigneeSection(
+                managers = managers,
+                selectedUser = selectedUser,
+                onUserChange = {
+                    selectedUser = it
+                },
+            )
         }
         HorizontalDivider()
         Footer(
