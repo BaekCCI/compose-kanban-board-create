@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.model
+package woowacourse.kanban.board.domain.model
 
 @JvmInline
 value class Tag(val content: String) {

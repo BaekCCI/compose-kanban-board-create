@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.model
+package woowacourse.kanban.board.domain.model
 
 class Tags(val items: List<Tag> = emptyList()) {
     init {
@@ -7,6 +7,6 @@ class Tags(val items: List<Tag> = emptyList()) {
     }
 
     companion object {
-        private const val MAX_TAG_SIZE = 5
+        const val MAX_TAG_SIZE = 5
     }
 }

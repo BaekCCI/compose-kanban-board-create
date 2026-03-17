@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.model
+package woowacourse.kanban.board.domain.model
 
 data class Task(val title: String, val description: String? = null, val tags: Tags, val user: User, val status: Status) {
     init {
