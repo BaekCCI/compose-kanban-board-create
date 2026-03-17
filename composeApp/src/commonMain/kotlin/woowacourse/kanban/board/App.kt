@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import woowacourse.kanban.board.ui.dialog.TaskCreateForm
+import woowacourse.kanban.board.ui.dialog.TaskCreateDialog
 
 @Composable
 @Preview
@@ -18,14 +18,13 @@ fun App() {
 
     MaterialTheme {
         if (showDialog) {
-            TaskCreateForm(
-                onDismiss = { showDialog = false },
-            )
-        } else {
-            Button(
-                onClick = { showDialog = true },
-                content = { Text("Show dialog") },
+            TaskCreateDialog(
+                onDismissRequest = { showDialog = false },
             )
         }
+        Button(
+            onClick = { showDialog = true },
+            content = { Text("Show dialog") },
+        )
     }
 }
