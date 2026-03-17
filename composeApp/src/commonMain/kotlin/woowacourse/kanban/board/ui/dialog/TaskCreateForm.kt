@@ -18,7 +18,6 @@ import woowacourse.kanban.board.ui.dialog.section.Footer
 import woowacourse.kanban.board.ui.dialog.section.Header
 import woowacourse.kanban.board.ui.dialog.section.StatusSection
 import woowacourse.kanban.board.ui.dialog.section.TagSection
-import woowacourse.kanban.board.ui.dialog.section.TaskCreateFormState
 import woowacourse.kanban.board.ui.dialog.section.TitleSection
 
 @Composable
