@@ -11,6 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.description_placeholder
+import kanbanboard.composeapp.generated.resources.label_description
+import org.jetbrains.compose.resources.stringResource
 import woowacourse.kanban.board.ui.component.Label
 import woowacourse.kanban.board.ui.theme.Gray
 import woowacourse.kanban.board.ui.theme.Gray500
@@ -22,7 +26,7 @@ fun DescriptionSection(modifier: Modifier = Modifier, value: String, onContentCh
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Label("설명")
+        Label(stringResource(Res.string.label_description))
         OutlinedTextField(
             value = value,
             onValueChange = {
@@ -31,7 +35,7 @@ fun DescriptionSection(modifier: Modifier = Modifier, value: String, onContentCh
             modifier = modifier.fillMaxWidth(),
             placeholder = {
                 Text(
-                    text = "태스크에 대한 자세한 설명을 입력하세요",
+                    text = stringResource(Res.string.description_placeholder),
                     color = Gray,
                 )
             },

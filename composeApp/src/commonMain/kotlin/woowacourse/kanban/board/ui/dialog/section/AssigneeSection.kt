@@ -17,6 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.label_assignee
+import org.jetbrains.compose.resources.stringResource
 import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.component.Label
 import woowacourse.kanban.board.ui.component.UserProfile
@@ -27,7 +30,7 @@ fun AssigneeSection(modifier: Modifier = Modifier, managers: List<User>, selecte
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Label("담당자", true)
+        Label(stringResource(Res.string.label_assignee), true)
         managers.chunked(3).forEach { users ->
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),

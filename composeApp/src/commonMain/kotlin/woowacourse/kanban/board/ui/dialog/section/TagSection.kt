@@ -7,6 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.label_tag
+import kanbanboard.composeapp.generated.resources.tag_placeholder
+import kanbanboard.composeapp.generated.resources.tag_supporting_text
+import org.jetbrains.compose.resources.stringResource
+import woowacourse.kanban.board.domain.model.Tag.Companion.MAX_TAG_LENGTH
+import woowacourse.kanban.board.domain.model.Tags
 import woowacourse.kanban.board.domain.validator.ValidationResult
 import woowacourse.kanban.board.ui.component.Label
 import woowacourse.kanban.board.ui.component.SingleLineTextField
@@ -23,15 +30,21 @@ fun TagSection(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Label("태그")
+        Label(stringResource(Res.string.label_tag))
         SingleLineTextField(
             modifier = Modifier.fillMaxWidth(),
             value = value,
             onValueChange = { onTagChange(it) },
             isError = validation is ValidationResult.Invalid,
-            errorMessage = (validation as? ValidationResult.Invalid)?.error?.toMessage(),
-            placeHolderMessage = "태그를 쉼표로 구분하여 입력하세요 (예: 버그,긴급)",
-            supportingText = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.",
+            errorMessage = (validation as? ValidationResult.Invalid)?.error?.let {
+                stringResource(
+                    it.toMessage(),
+                    MAX_TAG_LENGTH,
+                    Tags.MAX_TAG_SIZE,
+                )
+            },
+            placeHolderMessage = stringResource(Res.string.tag_placeholder),
+            supportingText = stringResource(Res.string.tag_supporting_text, MAX_TAG_LENGTH, Tags.MAX_TAG_SIZE),
         )
     }
 }

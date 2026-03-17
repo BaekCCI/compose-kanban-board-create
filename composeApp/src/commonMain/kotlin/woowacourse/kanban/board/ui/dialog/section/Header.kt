@@ -16,6 +16,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.create_dialog_close
+import kanbanboard.composeapp.generated.resources.create_dialog_title
+import org.jetbrains.compose.resources.stringResource
 import woowacourse.kanban.board.ui.theme.Gray900
 
 @Composable
@@ -28,7 +32,7 @@ fun Header(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = "새 태스크 생성",
+            text = stringResource(Res.string.create_dialog_title),
             fontSize = 28.sp,
             fontWeight = FontWeight.SemiBold,
             color = Gray900,
@@ -38,7 +42,7 @@ fun Header(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
         ) {
             Icon(
                 imageVector = Icons.Default.Close,
-                contentDescription = "테스크 종료",
+                contentDescription = stringResource(Res.string.create_dialog_close),
             )
         }
     }

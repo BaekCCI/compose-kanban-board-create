@@ -18,6 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.label_status
+import org.jetbrains.compose.resources.stringResource
 import woowacourse.kanban.board.domain.model.Status
 import woowacourse.kanban.board.ui.component.Label
 
@@ -27,7 +30,7 @@ fun StatusSection(modifier: Modifier = Modifier, selectedStatus: Status = Status
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Label("상태", true)
+        Label(stringResource(Res.string.label_status), true)
         Row(
             modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(8.dp),

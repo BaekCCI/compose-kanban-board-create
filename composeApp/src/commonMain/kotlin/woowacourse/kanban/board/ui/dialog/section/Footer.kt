@@ -17,6 +17,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.button_cancel
+import kanbanboard.composeapp.generated.resources.button_create
+import org.jetbrains.compose.resources.stringResource
 import woowacourse.kanban.board.ui.theme.Gray300
 import woowacourse.kanban.board.ui.theme.Gray700
 import woowacourse.kanban.board.ui.theme.Purple
@@ -52,7 +56,7 @@ fun CancelButton(modifier: Modifier = Modifier, onClickCancel: () -> Unit, enabl
         contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp),
     ) {
         Text(
-            text = "취소",
+            text = stringResource(Res.string.button_cancel),
             fontSize = 16.sp,
             fontWeight = FontWeight.W500,
         )
@@ -77,7 +81,7 @@ fun ConfirmButton(modifier: Modifier = Modifier, onClickConfirm: () -> Unit, ena
         contentPadding = PaddingValues(horizontal = 18.dp, vertical = 10.dp),
     ) {
         Text(
-            text = "생성",
+            text = stringResource(Res.string.button_create),
             fontSize = 16.sp,
             fontWeight = FontWeight.W500,
         )
