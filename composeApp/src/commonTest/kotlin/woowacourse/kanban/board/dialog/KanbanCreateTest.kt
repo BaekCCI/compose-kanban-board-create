@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.create
+package woowacourse.kanban.board.dialog
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsEnabled
@@ -8,7 +8,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
-import org.junit.Test
+import kotlin.test.Test
+import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.dialog.TaskCreateForm
 
 @OptIn(ExperimentalTestApi::class)
@@ -19,6 +20,9 @@ class KanbanCreateTest {
         setContent {
             TaskCreateForm(
                 onDismiss = {},
+                assignees = listOf(
+                    User("우테코"), User("테코"),
+                ),
             )
         }
         onAllNodes(hasSetTextAction())[0]
@@ -36,6 +40,9 @@ class KanbanCreateTest {
         setContent {
             TaskCreateForm(
                 onDismiss = {},
+                assignees = listOf(
+                    User("우테코"), User("테코"),
+                ),
             )
         }
 
@@ -54,6 +61,9 @@ class KanbanCreateTest {
         setContent {
             TaskCreateForm(
                 onDismiss = {},
+                assignees = listOf(
+                    User("우테코"), User("테코"),
+                ),
             )
         }
 

@@ -3,7 +3,7 @@ package woowacourse.kanban.board.kanban
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
-import woowacourse.kanban.board.model.Tag
+import woowacourse.kanban.board.domain.model.Tag
 
 class TagTest {
     @Test
