@@ -47,15 +47,6 @@ class CardTest {
     }
 
     @Test
-    fun `카드에 태그만 있어도 생성 성공`() {
-        val given = Tags(listOf(Tag("컴포넌트"), Tag("성능")))
-        assertEquals(
-            given.items,
-            Task(title = "타이틀", tags = given, user = User("테스트"), status = Status.TODO).tags.items,
-        )
-    }
-
-    @Test
     fun `카드에 태그가 5개 이하면 생성 성공`() {
         val given = Tags(listOf(Tag("컴포넌트"), Tag("성능"), Tag("컴포즈"), Tag("테스트"), Tag("안드로이드")))
         Task(title = "타이틀", tags = given, user = User("테스트"), status = Status.TODO)

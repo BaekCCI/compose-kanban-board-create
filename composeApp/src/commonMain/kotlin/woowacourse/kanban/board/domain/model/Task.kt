@@ -2,6 +2,6 @@ package woowacourse.kanban.board.domain.model
 
 data class Task(val title: String, val description: String? = null, val tags: Tags, val user: User, val status: Status) {
     init {
-        require(title.isBlank()) { "제목이 비어있습니다." }
+        require(title.isNotBlank()) { "제목이 비어있습니다." }
     }
 }
