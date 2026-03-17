@@ -9,6 +9,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.ui.theme.Gray700
 
+private const val REQUIRED_MARK = "*"
+
 @Composable
 fun Label(label: String, required: Boolean = false) {
     Row(
@@ -21,7 +23,7 @@ fun Label(label: String, required: Boolean = false) {
         )
         if (required) {
             Text(
-                text = "*",
+                text = REQUIRED_MARK,
                 color = Gray700,
             )
         }
