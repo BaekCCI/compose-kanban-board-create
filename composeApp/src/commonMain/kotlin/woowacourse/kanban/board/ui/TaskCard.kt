@@ -22,11 +22,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.model.Task
-import woowacourse.kanban.board.model.Status
-import woowacourse.kanban.board.model.Tag
-import woowacourse.kanban.board.model.Tags
-import woowacourse.kanban.board.model.User
+import woowacourse.kanban.board.domain.model.Status
+import woowacourse.kanban.board.domain.model.Tag
+import woowacourse.kanban.board.domain.model.Tags
+import woowacourse.kanban.board.domain.model.Task
+import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.component.Chip
 import woowacourse.kanban.board.ui.component.UserProfile
 import woowacourse.kanban.board.ui.theme.Gray100
@@ -34,7 +34,6 @@ import woowacourse.kanban.board.ui.theme.Gray200
 import woowacourse.kanban.board.ui.theme.Gray600
 import woowacourse.kanban.board.ui.theme.Gray900
 
-private const val DEFAULT_TITLE = "제목 없음"
 private const val TITLE_MAX_LINE = 1
 private const val CONTENT_MAX_LINE = 2
 
@@ -60,9 +59,9 @@ fun TaskCard(task: Task, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun TaskTitle(title: String?) {
+private fun TaskTitle(title: String) {
     Text(
-        text = if (title.isNullOrBlank()) DEFAULT_TITLE else title,
+        text = title,
         fontSize = 16.sp,
         fontWeight = FontWeight.W500,
         color = Gray900,

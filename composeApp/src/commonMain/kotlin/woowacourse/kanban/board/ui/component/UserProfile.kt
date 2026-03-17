@@ -22,14 +22,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.model.User
+import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.theme.Gray400
 import woowacourse.kanban.board.ui.theme.Gray700
 
-private const val UNKNOWN_USER = "알 수 없는 유저"
-
 @Composable
-fun UserProfile(user: User?, modifier: Modifier = Modifier) {
+fun UserProfile(user: User, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -49,7 +47,7 @@ fun UserProfile(user: User?, modifier: Modifier = Modifier) {
             )
         }
         Text(
-            text = user?.name ?: UNKNOWN_USER,
+            text = user.name,
             fontWeight = FontWeight.W500,
             fontSize = 14.sp,
             color = Gray700,
