@@ -1,40 +1,80 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+## 기능 요구 사항
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+- 디자인 시안을 참고하여 새 태스크 생성 모달을 구현한다.
 
-### Build and Run Android Application
+* 필수 입력 란과 선택 입력 란을 구분한다.
+    * 필수 입력: 제목, 상태, 담당자
+    * 선택 입력: 설명, 태그
+* 상태와 담당자는 첫 번째 항목으로 기본 선택되어 있고, 한 항목만 선택 가능하다.
+* 유효성 검사가 실패하면 생성 버튼을 누를 수 없다.
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+## 프로그래밍 요구 사항
 
-### Build and Run Desktop (JVM) Application
+* ViewModel, Hilt 등은 장바구니 미션에서 활용하지 않는다. 컴포즈 학습에 집중하자.
+* 컴포저블 함수가 너무 많은 일을 하지 않도록 분리하기 위해 노력해 본다.
+* 디자인 정합성을 맞추기 위한 너무 많은 노력을 기울이지 않아도 된다.
+    * 1px 단위에 연연하지 말고, 폰트와 색상도 중요하지 않다.
+* 단위 테스트만으로도 충분한 로직과, UI 테스트가 필요한 영역을 구분한다.
+    * 핵심 비즈니스 로직을 가지는 객체를 분리해 단위 테스트를 진행한다.
+    * Compose UI Testing을 활용하여 기능 요구 사항을 테스트한다.
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+## 디자인 시안
+
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/3aBG3UfkTwmHM8BnPyahtT/8%EA%B8%B0-Android-%EB%A0%88%EB%B2%A81-%EB%AF%B8%EC%85%98-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=21642-2&t=SPJymlvCZzu3Soms-1)
+
+# 🚀 1단계 - 칸반 보드 생성(상품 목록)
+---
+
+### Dialog
+
+- [x] 설명부터 담당자까지 스크롤 화면으로 구현된다.
+
+- [x] 헤더 (새 태스크 생성, x icon)
+    - 고정
+
+- [x] 재목
+    - 필수 입력
+    - 미기입시 에러 문구 “제목을 입력해 주세요”
+    - 에러 시 텍스트 필드 라인 에러 표시 및 경고문
+    - Linelimit 1
+    - Label “태스크 제목을 입력하세요”
+    - 제목을 입력했다가 모두 지웠을때 에러문구가 뜬다.
+
+- [x] 설명
+    - 글자 수 증가시 필드 확장
+    - Label “태스크에 대한 자세한 설명을 입력하세요”
+
+- [x] 태그
+    - 태그 형식이 올바르지 않을시 에러 문구 “태그 형식이 올바르지 않습니다”
+    - 태그 개수 및 글자 수가 허용 범위( 최대 5 )를 넘을 경우 에러 문구 “태그는 5자 이내로 5개까지만 등록할 수 있습니다.”
+    - 에러 시 텍스트 필드 라인 에러 표시 및 경고문
+    - Label “태그를 쉼표로 구분하여 입력하세요(예: 버그, 긴급)”
+    - 설명글 “5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.”
+
+- [x] 상태
+    - 필수입력
+    - 다중 선택 불가( 기본 - 첫번째 )
+
+- [x] 담당자
+    - 필수이력
+    - 다중 선택 불가( 기본 - 첫번째 )
+
+- [x] 취소 / 생성 버튼
+    - 전체 필수 입력 필드가 다 기입되면 활성화 된다.
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+### 테스트 기능 정의서
+
+1. 제목
+    - [x] 제목을 작성중 모든 문구를 지웠을 때 에러 문구가 표시된다.
+
+2. 태그
+    - [x] 글과 글 사이는 쉼표로 구분되고 공백이 있을 경우 에러 문구가 표시된다.
+    - [x] 쉼표로 구분된 문자열이 5자 초과일 경우 에러 문구가 표시된다.
+    - [x]  쉼표로 구분된 개수가 5개 초과일 경우 에러 문구가 표시된다.
+
+3. 생성 버튼
+    - [x] 제목과 태그에 오류가 없고 제목이 공백이 아닐 경우 활성화된다.
+    - [x] 제목 에러 발생시 비활성화된다.
+    - [x] 태그 에러 발생시 비활성화된다.
