@@ -8,8 +8,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
-import woowacourse.kanban.board.App
 import kotlin.test.Test
+import woowacourse.kanban.board.App
 
 @OptIn(ExperimentalTestApi::class)
 class AppUiest {
@@ -60,5 +60,4 @@ class AppUiest {
 
         onNodeWithText("새로운 태스크가 추가되었습니다.").assertIsDisplayed()
     }
-
 }
