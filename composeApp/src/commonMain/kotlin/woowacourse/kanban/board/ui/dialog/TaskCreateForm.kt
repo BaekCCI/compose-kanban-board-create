@@ -44,7 +44,7 @@ fun TaskCreateForm(
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp),
 
-            ) {
+        ) {
             TitleSection(
                 value = uiState.title,
                 onTitleChange = {

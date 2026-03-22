@@ -28,7 +28,7 @@ fun App() {
     val coroutineScope = rememberCoroutineScope()
 
     MaterialTheme {
-        Box() {
+        Box {
             if (showDialog) {
                 TaskCreateDialog(
                     onDismissRequest = { showDialog = false },
@@ -42,7 +42,6 @@ fun App() {
                             boardState.createTask(newTask)
                             showDialog = false
                             coroutineScope.launch { snackBarHostState.showSnackbar("새로운 태스크가 추가되었습니다.") }
-
                         }.onFailure { exception ->
                             coroutineScope.launch { snackBarHostState.showSnackbar(exception.message ?: "오류 발생") }
                         }

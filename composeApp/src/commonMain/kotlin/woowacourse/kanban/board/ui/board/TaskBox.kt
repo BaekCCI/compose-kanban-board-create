@@ -27,7 +27,6 @@ import woowacourse.kanban.board.domain.model.Status
 import woowacourse.kanban.board.domain.model.Tags
 import woowacourse.kanban.board.domain.model.Task
 import woowacourse.kanban.board.domain.model.User
-import woowacourse.kanban.board.ui.TaskCard
 import woowacourse.kanban.board.ui.util.toUiString
 
 @Composable
@@ -69,11 +68,7 @@ fun TaskBox(modifier: Modifier = Modifier, status: Status, tasks: List<Task>) {
     }
 }
 
-private data class TaskBoxColor(
-    val background: Color,
-    val headerBackground: Color,
-    val border: Color,
-)
+private data class TaskBoxColor(val background: Color, val headerBackground: Color, val border: Color)
 
 private fun Status.getBoxColor(): TaskBoxColor = when (this) {
     Status.TODO -> TaskBoxColor(

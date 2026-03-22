@@ -9,21 +9,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.domain.model.Status
-import woowacourse.kanban.board.domain.model.Task
-import woowacourse.kanban.board.ui.dialog.TaskCreateFormState
 
 @Composable
-fun KanbanBoard(
-    modifier: Modifier = Modifier,
-    onClickCreate: () -> Unit = {},
-    uiState: KanbanBoardState,
-) {
+fun KanbanBoard(modifier: Modifier = Modifier, onClickCreate: () -> Unit = {}, uiState: KanbanBoardState) {
     Column(
         modifier = modifier.fillMaxWidth().fillMaxHeight().background(Color(0xffF9FAFB)),
     ) {

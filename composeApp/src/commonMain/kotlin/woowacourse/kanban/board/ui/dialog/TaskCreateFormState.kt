@@ -4,11 +4,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import woowacourse.kanban.board.domain.TaskCreator
 import woowacourse.kanban.board.domain.model.Status
-import woowacourse.kanban.board.domain.model.Tag
-import woowacourse.kanban.board.domain.model.Tags
-import woowacourse.kanban.board.domain.model.Task
 import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.domain.validator.TaskValidator
 import woowacourse.kanban.board.domain.validator.ValidationResult

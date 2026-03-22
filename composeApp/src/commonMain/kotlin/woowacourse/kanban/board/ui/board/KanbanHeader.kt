@@ -82,10 +82,7 @@ fun KanbanHeader(
 }
 
 @Composable
-fun KanbanProgressBar(
-    modifier: Modifier = Modifier,
-    completeRatio: Float
-) {
+fun KanbanProgressBar(modifier: Modifier = Modifier, completeRatio: Float) {
     LinearProgressIndicator(
         progress = { completeRatio },
         modifier = modifier
