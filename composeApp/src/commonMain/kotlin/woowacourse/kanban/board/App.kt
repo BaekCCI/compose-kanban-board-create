@@ -33,7 +33,6 @@ fun App() {
                 TaskCreateDialog(
                     onDismissRequest = { showDialog = false },
                     onConfirm = { title, description, tags, status, assignee ->
-                        println("title = $title, description = $description, tags=$tags, status=$status,assignee= $assignee")
 
                         val result =
                             TaskCreator.create(title = title, description = description, tags = tags, assignee = assignee, status = status)
