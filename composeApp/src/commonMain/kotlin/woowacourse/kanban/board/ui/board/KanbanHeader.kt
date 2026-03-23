@@ -25,6 +25,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.board_header_title
+import kanbanboard.composeapp.generated.resources.button_create_new_task
+import kanbanboard.composeapp.generated.resources.format_completion_rate
+import org.jetbrains.compose.resources.stringResource
 import woowacourse.kanban.board.ui.theme.Purple
 
 @Composable
@@ -49,8 +54,13 @@ fun KanbanHeader(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
-                Text(text = "Compose Desktop 칸반 보드", color = Color(0xff101828), fontSize = 24.sp, fontWeight = FontWeight.Medium)
-                Text("완료율: ${(completeRatio * 100).toInt()}% ($completeCount/$totalCount)")
+                Text(
+                    text = stringResource(Res.string.board_header_title),
+                    color = Color(0xff101828),
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Medium,
+                )
+                Text(stringResource(Res.string.format_completion_rate, (completeRatio * 100).toInt(), completeCount, totalCount))
             }
 
             Button(
@@ -71,7 +81,7 @@ fun KanbanHeader(
                     contentDescription = "add",
                 )
                 Text(
-                    text = "새 태스크 생성",
+                    text = stringResource(Res.string.button_create_new_task),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                 )
