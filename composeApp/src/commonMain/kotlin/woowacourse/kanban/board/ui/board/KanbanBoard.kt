@@ -44,6 +44,6 @@ fun KanbanBoard(modifier: Modifier = Modifier, onClickCreate: () -> Unit = {}, u
 
 @Preview(showBackground = true, widthDp = 800)
 @Composable
-fun KanbanBoardPreview() {
+private fun KanbanBoardPreview() {
     KanbanBoard(uiState = KanbanBoardState())
 }

@@ -92,7 +92,7 @@ private fun Status.getBoxColor(): TaskBoxColor = when (this) {
 
 @Preview
 @Composable
-fun TaskBoxPreview() {
+private fun TaskBoxPreview() {
     TaskBox(
         status = Status.DONE,
         tasks = listOf(

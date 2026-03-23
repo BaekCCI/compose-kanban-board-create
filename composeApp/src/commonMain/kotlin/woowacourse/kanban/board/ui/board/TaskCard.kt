@@ -132,6 +132,6 @@ class CardPreviewParameterProvider : PreviewParameterProvider<Task> {
 
 @Composable
 @Preview
-fun TaskCardPreview(@PreviewParameter(CardPreviewParameterProvider::class) card: Task) {
+private fun TaskCardPreview(@PreviewParameter(CardPreviewParameterProvider::class) card: Task) {
     TaskCard(card)
 }

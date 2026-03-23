@@ -102,7 +102,7 @@ fun TaskCreateForm(
 
 @Composable
 @Preview(showBackground = true)
-fun TaskCreateFormPreview() {
+private fun TaskCreateFormPreview() {
     TaskCreateForm(
         onDismiss = {},
         assignees = listOf(User("다이노"), User("다이노소어"), User("우우우")),

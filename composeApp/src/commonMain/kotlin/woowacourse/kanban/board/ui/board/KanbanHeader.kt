@@ -107,7 +107,7 @@ fun KanbanProgressBar(modifier: Modifier = Modifier, completeRatio: Float) {
 
 @Preview(showBackground = true, widthDp = 800)
 @Composable
-fun KanbanHeaderPreview() {
+private fun KanbanHeaderPreview() {
     KanbanHeader(
         totalCount = 30,
         completeCount = 20,
