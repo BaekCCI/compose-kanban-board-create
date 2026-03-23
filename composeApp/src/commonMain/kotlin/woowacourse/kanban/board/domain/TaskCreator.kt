@@ -10,7 +10,7 @@ object TaskCreator {
 
     fun create(title: String, description: String, tags: List<String>, assignee: User, status: Status): Result<Task> {
         return try {
-            val task = Task(title, description, Tags(tags.map { Tag(it) }), assignee, status)
+            val task = Task(title = title, description = description, tags = Tags(tags.map { Tag(it) }), user = assignee, status = status)
             Result.success(task)
         } catch (e: IllegalArgumentException) {
             Result.failure(e)

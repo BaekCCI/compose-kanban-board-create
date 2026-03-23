@@ -60,7 +60,7 @@ fun TaskBox(modifier: Modifier = Modifier, status: Status, tasks: List<Task>, bo
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            items(tasks) {
+            items(tasks, key = { it.id }) {
                 TaskCard(task = it, modifier = Modifier.fillMaxWidth())
             }
         }
@@ -95,15 +95,15 @@ private fun TaskBoxPreview() {
     TaskBox(
         status = Status.DONE,
         tasks = listOf(
-            Task("Task 1", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 1", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 1", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
-            Task("Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 1", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 1", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 1", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
+            Task(title = "Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
         ),
         boxColor = Status.DONE.getBoxColor(),
     )
