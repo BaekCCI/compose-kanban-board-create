@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.domain.model.Status
 
 @Composable
-fun KanbanBoard(modifier: Modifier = Modifier, onClickCreate: () -> Unit = {}, uiState: KanbanBoardState) {
+fun TaskBoard(modifier: Modifier = Modifier, onClickCreate: () -> Unit = {}, uiState: TaskBoardState) {
     Column(
         modifier = modifier.fillMaxWidth().fillMaxHeight().background(Color(0xffF9FAFB)),
     ) {
@@ -44,6 +44,6 @@ fun KanbanBoard(modifier: Modifier = Modifier, onClickCreate: () -> Unit = {}, u
 
 @Preview(showBackground = true, widthDp = 800)
 @Composable
-private fun KanbanBoardPreview() {
-    KanbanBoard(uiState = KanbanBoardState())
+private fun TaskBoardPreview() {
+    TaskBoard(uiState = TaskBoardState())
 }

@@ -6,7 +6,7 @@ import woowacourse.kanban.board.domain.model.Status
 import woowacourse.kanban.board.domain.model.Tags
 import woowacourse.kanban.board.domain.model.Task
 import woowacourse.kanban.board.domain.model.User
-import woowacourse.kanban.board.ui.board.KanbanBoardState
+import woowacourse.kanban.board.ui.board.TaskBoardState
 
 class KanbanBoardStateTest {
 
@@ -19,7 +19,7 @@ class KanbanBoardStateTest {
 
     @Test
     fun `태스크 추가 시 totalCount가 증가한다`() {
-        val state = KanbanBoardState()
+        val state = TaskBoardState()
 
         state.createTask(task)
 
@@ -28,7 +28,7 @@ class KanbanBoardStateTest {
 
     @Test
     fun `Done 상태 태스크 추가 시 completeCount가 증가한다`() {
-        val state = KanbanBoardState()
+        val state = TaskBoardState()
 
         state.createTask(task.copy(status = Status.DONE))
 
@@ -37,14 +37,14 @@ class KanbanBoardStateTest {
 
     @Test
     fun `태스크가 없을 때 completeRatio는 0이다`() {
-        val state = KanbanBoardState()
+        val state = TaskBoardState()
 
         assertEquals(0f, state.completeRatio)
     }
 
     @Test
     fun `전체 태스크 중 Done 비율이 올바르게 계산된다`() {
-        val state = KanbanBoardState()
+        val state = TaskBoardState()
 
         state.createTask(task.copy(status = Status.DONE))
         state.createTask(task.copy(status = Status.TODO))

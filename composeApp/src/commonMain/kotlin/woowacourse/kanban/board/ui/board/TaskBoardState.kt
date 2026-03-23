@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import woowacourse.kanban.board.domain.model.Status
 import woowacourse.kanban.board.domain.model.Task
 
-class KanbanBoardState {
+class TaskBoardState {
     var tasks: List<Task> by mutableStateOf(emptyList())
 
     val totalCount: Int get() = tasks.size

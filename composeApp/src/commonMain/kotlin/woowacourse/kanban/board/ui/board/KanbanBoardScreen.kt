@@ -17,7 +17,7 @@ import woowacourse.kanban.board.ui.dialog.TaskCreateDialog
 
 @Composable
 fun KanbanBoardScreen() {
-    val boardState = remember { KanbanBoardState() }
+    val boardState = remember { TaskBoardState() }
     var showDialog by remember { mutableStateOf(false) }
     val snackBarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -41,7 +41,7 @@ fun KanbanBoardScreen() {
                 },
             )
         }
-        KanbanBoard(
+        TaskBoard(
             uiState = boardState,
             onClickCreate = { showDialog = true },
         )

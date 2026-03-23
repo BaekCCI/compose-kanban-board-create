@@ -64,7 +64,7 @@ fun KanbanHeader(
             }
             CreateNewTaskButton(onClickCreate = onClickCreate)
         }
-        KanbanProgressBar(completeRatio = completeRatio)
+        TaskProgressBar(completeRatio = completeRatio)
     }
 }
 
@@ -99,7 +99,7 @@ private fun CreateNewTaskButton(onClickCreate: () -> Unit) {
 }
 
 @Composable
-private fun KanbanProgressBar(modifier: Modifier = Modifier, completeRatio: Float) {
+private fun TaskProgressBar(modifier: Modifier = Modifier, completeRatio: Float) {
     LinearProgressIndicator(
         progress = { completeRatio },
         modifier = modifier
