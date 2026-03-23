@@ -68,7 +68,6 @@ fun KanbanHeader(
                 onClick = {
                     onClickCreate()
                 },
-                enabled = true,
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Purple,
