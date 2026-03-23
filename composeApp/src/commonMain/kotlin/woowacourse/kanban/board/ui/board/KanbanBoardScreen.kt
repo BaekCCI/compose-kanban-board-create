@@ -57,7 +57,6 @@ fun KanbanBoardScreen() {
                             SnackBarEvent(
                                 strRes = Res.string.snackbar_create_new_task,
                             )
-
                     }.onFailure { exception ->
                         snackBarEvent = SnackBarEvent(
                             strRes = Res.string.snackbar_error_create_new_task,
