@@ -36,6 +36,7 @@ fun TaskBoard(modifier: Modifier = Modifier, onClickCreate: () -> Unit = {}, uiS
                     modifier = Modifier.weight(1f, fill = false).widthIn(max = 320.dp).fillMaxHeight(),
                     status = status,
                     tasks = uiState.tasks.filter { it.status == status },
+                    boxColor = status.getBoxColor(),
                 )
             }
         }

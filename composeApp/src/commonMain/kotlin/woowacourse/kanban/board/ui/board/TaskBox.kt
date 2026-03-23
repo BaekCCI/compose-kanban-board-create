@@ -30,14 +30,13 @@ import woowacourse.kanban.board.domain.model.User
 import woowacourse.kanban.board.ui.util.toUiString
 
 @Composable
-fun TaskBox(modifier: Modifier = Modifier, status: Status, tasks: List<Task>) {
-    val colors = status.getBoxColor()
+fun TaskBox(modifier: Modifier = Modifier, status: Status, tasks: List<Task>, boxColor: TaskBoxColor) {
     Column(
         modifier = modifier.clip(shape = RoundedCornerShape(10.dp))
-            .background(colors.background),
+            .background(boxColor.background),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().background(colors.headerBackground)
+            modifier = Modifier.fillMaxWidth().background(boxColor.headerBackground)
                 .padding(horizontal = 16.dp, vertical = 12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -54,7 +53,7 @@ fun TaskBox(modifier: Modifier = Modifier, status: Status, tasks: List<Task>) {
         LazyColumn(
             modifier = Modifier.fillMaxWidth().fillMaxHeight().border(
                 width = 1.dp,
-                color = colors.border,
+                color = boxColor.border,
                 shape = RoundedCornerShape(0.dp, 0.dp, 10.dp, 10.dp),
             ),
             contentPadding = PaddingValues(16.dp),
@@ -68,9 +67,9 @@ fun TaskBox(modifier: Modifier = Modifier, status: Status, tasks: List<Task>) {
     }
 }
 
-private data class TaskBoxColor(val background: Color, val headerBackground: Color, val border: Color)
+data class TaskBoxColor(val background: Color, val headerBackground: Color, val border: Color)
 
-private fun Status.getBoxColor(): TaskBoxColor = when (this) {
+fun Status.getBoxColor(): TaskBoxColor = when (this) {
     Status.TODO -> TaskBoxColor(
         background = Color(0xffEFF6FF),
         headerBackground = Color(0xff155DFC),
@@ -106,5 +105,6 @@ private fun TaskBoxPreview() {
             Task("Task 2", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
             Task("Task 3", description = "asdfasd", tags = Tags(emptyList()), user = User("dino"), status = Status.TODO),
         ),
+        boxColor = Status.DONE.getBoxColor(),
     )
 }
