@@ -60,38 +60,46 @@ fun KanbanHeader(
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Medium,
                 )
-                Text(stringResource(Res.string.format_completion_rate, (completeRatio * 100).toInt(), completeCount, totalCount))
+                CompletionRateText(completeRatio, completeCount, totalCount)
             }
-
-            Button(
-                modifier = modifier,
-                onClick = {
-                    onClickCreate()
-                },
-                shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Purple,
-                    contentColor = Color.White,
-                ),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "add",
-                )
-                Text(
-                    text = stringResource(Res.string.button_create_new_task),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                )
-            }
+            CreateNewTaskButton(onClickCreate = onClickCreate)
         }
         KanbanProgressBar(completeRatio = completeRatio)
     }
 }
 
 @Composable
-fun KanbanProgressBar(modifier: Modifier = Modifier, completeRatio: Float) {
+private fun CompletionRateText(completeRatio: Float, completeCount: Int, totalCount: Int) {
+    Text(stringResource(Res.string.format_completion_rate, (completeRatio * 100).toInt(), completeCount, totalCount))
+}
+
+@Composable
+private fun CreateNewTaskButton(onClickCreate: () -> Unit) {
+    Button(
+        onClick = {
+            onClickCreate()
+        },
+        shape = RoundedCornerShape(10.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Purple,
+            contentColor = Color.White,
+        ),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
+    ) {
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = "add",
+        )
+        Text(
+            text = stringResource(Res.string.button_create_new_task),
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Normal,
+        )
+    }
+}
+
+@Composable
+private fun KanbanProgressBar(modifier: Modifier = Modifier, completeRatio: Float) {
     LinearProgressIndicator(
         progress = { completeRatio },
         modifier = modifier
