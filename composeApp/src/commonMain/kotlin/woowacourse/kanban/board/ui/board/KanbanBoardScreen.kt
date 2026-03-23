@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import woowacourse.kanban.board.domain.TaskCreator
 import woowacourse.kanban.board.ui.dialog.TaskCreateDialog
 
@@ -55,4 +56,10 @@ fun KanbanBoardScreen() {
             modifier = Modifier.align(Alignment.BottomCenter),
         )
     }
+}
+
+@Composable
+@Preview
+private fun KanbanBoardScreenPreview() {
+    KanbanBoardScreen()
 }
