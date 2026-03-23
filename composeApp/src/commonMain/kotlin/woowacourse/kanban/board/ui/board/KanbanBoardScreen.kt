@@ -12,21 +12,34 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.snackbar_create_new_task
+import kanbanboard.composeapp.generated.resources.snackbar_error_create_new_task
+import kanbanboard.composeapp.generated.resources.snackbar_unknown_error
+import org.jetbrains.compose.resources.getString
 import woowacourse.kanban.board.domain.TaskCreator
 import woowacourse.kanban.board.ui.dialog.TaskCreateDialog
+import woowacourse.kanban.board.ui.util.SnackBarEvent
 
 @Composable
 fun KanbanBoardScreen() {
     val boardState = remember { TaskBoardState() }
     var showDialog by remember { mutableStateOf(false) }
     val snackBarHostState = remember { SnackbarHostState() }
-    var snackBarMessage: String? by remember { mutableStateOf(null) }
+    var snackBarEvent: SnackBarEvent? by remember { mutableStateOf(null) }
 
-    LaunchedEffect(snackBarMessage) {
-        snackBarMessage?.let {
-            snackBarHostState.showSnackbar(message = it, withDismissAction = true)
+    LaunchedEffect(snackBarEvent?.id) {
+        snackBarEvent?.let {
+            snackBarHostState.showSnackbar(
+                message = when {
+                    it.message != null -> it.message
+                    it.strRes != null -> getString(it.strRes)
+                    else -> getString(Res.string.snackbar_unknown_error)
+                },
+                withDismissAction = true,
+            )
         }
-        snackBarMessage = null
+        snackBarEvent = null
     }
 
     Box {
@@ -40,9 +53,16 @@ fun KanbanBoardScreen() {
                     result.onSuccess { newTask ->
                         boardState.createTask(newTask)
                         showDialog = false
-                        snackBarMessage = "새로운 태스크가 추가되었습니다."
+                        snackBarEvent =
+                            SnackBarEvent(
+                                strRes = Res.string.snackbar_create_new_task,
+                            )
+
                     }.onFailure { exception ->
-                        snackBarMessage = exception.message ?: "오류 발생"
+                        snackBarEvent = SnackBarEvent(
+                            strRes = Res.string.snackbar_error_create_new_task,
+                            message = exception.message,
+                        )
                     }
                 },
             )
